@@ -8,7 +8,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route exect path="/" element={<Home />} />
+        <Route exect path="/Moxie" element={<Home />} />
       </Routes>
       <Footer />
     </>
