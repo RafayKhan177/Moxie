@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Moxie/static/css/main.2a042019.css",
-    "main.js": "/Moxie/static/js/main.a7a069b8.js",
+    "main.js": "/Moxie/static/js/main.9d5e563b.js",
     "static/js/787.765a129d.chunk.js": "/Moxie/static/js/787.765a129d.chunk.js",
     "static/media/shoe_pic.png": "/Moxie/static/media/shoe_pic.c17238d9082c8677384b.png",
     "static/media/logo.png": "/Moxie/static/media/logo.339609011643a60fbe01.png",
     "index.html": "/Moxie/index.html",
     "main.2a042019.css.map": "/Moxie/static/css/main.2a042019.css.map",
-    "main.a7a069b8.js.map": "/Moxie/static/js/main.a7a069b8.js.map",
+    "main.9d5e563b.js.map": "/Moxie/static/js/main.9d5e563b.js.map",
     "787.765a129d.chunk.js.map": "/Moxie/static/js/787.765a129d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2a042019.css",
-    "static/js/main.a7a069b8.js"
+    "static/js/main.9d5e563b.js"
   ]
 }
