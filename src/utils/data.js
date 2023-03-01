@@ -1,13 +1,6 @@
 import Pic from '../assets/shoe_pic.png'
 export const shoesData = [
-  {
-    id: 1,
-    name: "Nike Air Max 90",
-    desc: "Classic sneaker with visible air cushioning",
-    price: "129.99",
-    image: Pic,
-    category: "running"
-  },
+
   {
     id: 2,
     name: "Adidas Ultraboost",
@@ -88,7 +81,7 @@ export const shoesData = [
     image: Pic,
     category: "athletic"
   },
- 
+
   {
     id: 1004,
     name: "Brooks Ghost",
@@ -148,20 +141,20 @@ export const shoesData = [
 ];
 export const Category = [
   {
-    id:1,
+    id: 1,
     name: "running",
-    category:"running",
-},{
-  id:2,
-  name: "dress",
-  category:"dress",
-},{
-  id:3,
-  name: "athletic",
-  category:"athletic",
-},{
-  id:4,
-  name: "casual",
-  category:"casual",
-},
+    category: "running",
+  }, {
+    id: 2,
+    name: "dress",
+    category: "dress",
+  }, {
+    id: 3,
+    name: "athletic",
+    category: "athletic",
+  }, {
+    id: 4,
+    name: "casual",
+    category: "casual",
+  },
 ]

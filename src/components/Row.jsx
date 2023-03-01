@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import {MdShoppingBasket} from 'react-icons/md'
 
-const Row = ({ data, scrollValue ,flag}) => {
+const Row = ({ data, scrollValue, flag }) => {
   const Row = useRef();
   useEffect(() => {
     Row.current.scrollLeft += scrollValue;
   }, [scrollValue]);
 
   return (
-    <section ref={Row} className={`row_container scrollbar-hide ${flag?"":"flex-wrap "}`}>
+    <section
+      ref={Row}
+      className={`row_container scrollbar-hide ${flag ? "" : "flex-wrap "}`}
+    >
       {data && data.length > 0 ? (
         data.map((item) => (
           <motion.div
@@ -31,9 +35,9 @@ const Row = ({ data, scrollValue ,flag}) => {
               </motion.div>
               <motion.div
                 whileTap={{ scale: 0.75 }}
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-red-600 cursor-pointer hover:shadow-md"
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-color_orange cursor-pointer hover:shadow-md"
               >
-                {/* <MdShoppingBasket className="text-white" /> */}
+                <MdShoppingBasket className="text-white" />
               </motion.div>
             </div>
             <div className="w-full flex items-end justify-end flex-col gap-1">

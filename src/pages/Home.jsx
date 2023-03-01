@@ -28,7 +28,7 @@ const Home = () => {
         </div>
         <img className="hero_bg animated" src={ShoePic} alt="" />
       </div>
-      <div>
+      <div className="row_mainDiv">
         <div className="row_title">
           <div className="row_title_div1">
             <GiConverseShoe className="icon_shoe" />
@@ -57,25 +57,31 @@ const Home = () => {
             </motion.div>
           </div>
         </div>
-        <Row data={shoesData} scrollValue={scrollValue} flag={true} />
+        <Row
+          data={shoesData?.filter((n) => n.category == "running")}
+          scrollValue={scrollValue}
+          flag={true}
+        />
       </div>
-      <div>
-        <div className="row_title">
-          <div className="row_title_div1">
-            <GiConverseShoe className="icon_shoe" />
-            <h1>
-              Our <span> Colletions</span>
-            </h1>
-          </div>
-          <div>
-            <motion.div whileTap={{ scale: 0.75 }} className="icon">
-              <FaShoePrints className="text-lg text-white" />
-            </motion.div>
-          </div>
+
+      <div className="row_title">
+        <div className="row_title_div1">
+          <GiConverseShoe className="icon_shoe" />
+          <h1>
+            Our <span> Colletions</span>
+          </h1>
         </div>
         <div>
-          <Menu flag={true} />
+          <NavLink>
+            <motion.div whileTap={{ scale: 0.75 }} className="icon">
+              <FaShoePrints className="text-lg text-white" />
+              <p className="mx-2">SEE ALL</p>
+            </motion.div>
+          </NavLink>
         </div>
+      </div>
+      <div>
+        <Menu flag={true} />
       </div>
     </section>
   );
