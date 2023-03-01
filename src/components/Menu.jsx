@@ -4,11 +4,12 @@ import { GiConverseShoe } from "react-icons/gi";
 import { Category, shoesData } from "../utils/data";
 import Row from "./Row";
 const Menu = () => {
-  const [filter, setFilter] = useState("casual");
+  const [filter, setFilter] = useState("running");
   return (
     <>
       <div className="menu_div">
-        {Category &&
+       <div className="osm">
+       {Category &&
           Category.map((category) => (
             <motion.div
               whileTap={{ scale: 0.6 }}
@@ -32,6 +33,7 @@ const Menu = () => {
               <p className="text-white"> {category.name}</p>
             </motion.div>
           ))}
+       </div>
       </div>
       <div className="">
         <Row data={shoesData?.filter((n) => n.category == filter)} />

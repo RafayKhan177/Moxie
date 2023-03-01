@@ -11,7 +11,7 @@ const Row = ({ data, scrollValue, flag }) => {
   return (
     <section
       ref={Row}
-      className={`row_container scrollbar-hide ${flag ? "" : "flex-wrap "}`}
+      className={`row_container scrollbar-hide gap-8 ${flag ? "" : "flex-wrap "}`}
     >
       {data && data.length > 0 ? (
         data.map((item) => (
@@ -20,7 +20,7 @@ const Row = ({ data, scrollValue, flag }) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 500 }}
             key={item.id}
-            className="card_div w-400 mx-4 h-[18rem] min-w-[300px] md:w-[340px] my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-lg flex flex-col justify-between items-center"
+            className="card_div  w-400 mx-auto h-[18rem] min-w-[300px] md:w-[340px] my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-lg flex flex-col justify-between items-center"
           >
             <div className="w-full flex items-center justify-between">
               <motion.div

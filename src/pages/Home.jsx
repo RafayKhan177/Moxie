@@ -58,7 +58,7 @@ const Home = () => {
           </div>
         </div>
         <Row
-          data={shoesData?.filter((n) => n.category == "running")}
+          data={shoesData?.filter((n) => n.category == "casual")}
           scrollValue={scrollValue}
           flag={true}
         />

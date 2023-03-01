@@ -5,7 +5,7 @@ import Cart from "./Cart";
 import { useState } from "react";
 
 const Navbar = () => {
-  const [showCart, setShowCart] = useState(true);
+  const [showCart, setShowCart] = useState(false);
   const toggleCart=()=>{
     setShowCart(!showCart
       )
@@ -29,7 +29,7 @@ const Navbar = () => {
           LINK
         </NavLink>
         <NavLink className="nav_link" to="">
-          LINK
+          Blog
         </NavLink>
       </nav>
       <Cart showCart={showCart} toggleCart={toggleCart}/>
