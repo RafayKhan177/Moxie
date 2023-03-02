@@ -37,6 +37,7 @@ body {
 }
 /* -------------------------------------------------------------- Start Navbar Component  */
 nav {
+  top: 0;
   position: absolute;
   background-color: transparent;
   height: 8vh;
@@ -47,6 +48,7 @@ nav {
   align-items: center;
   letter-spacing: 1.5px;
   z-index: 5;
+  width: 95vw;
   .nav_link {
     color: teal;
     margin: 0 0.2rem;
@@ -61,6 +63,38 @@ nav {
     border-radius: 4px;
     color: $color_offWhite;
     background-color: $color_orange;
+  }
+  .img_div {
+    margin: 0 2rem 0 auto;
+    img {
+      height: 3rem;
+      width: 3rem;
+      cursor: pointer;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+  }
+}
+.profile_menu {
+  margin: 4rem 3rem;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  // padding: 1rem;
+  background-color: $color_skin;
+  border-radius: 1rem;
+  ul li {
+    font-size: 0.9rem;
+    color: #494949;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: .4rem;
+    cursor: pointer;
+  }
+  ul li:hover{
+    background-color: $color_orange;
+    color: #eeeee1;
   }
   // @media screen and (max-width: 550px) {
   //   nav{
@@ -110,7 +144,7 @@ nav {
   div {
     display: flex;
   }
-  .icon { 
+  .icon {
     background-color: $color_orange;
     color: aliceblue;
     padding: 0.5rem;

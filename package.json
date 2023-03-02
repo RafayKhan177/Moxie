@@ -4,9 +4,14 @@
   "homepage": "http://rafaykhan177.github.io/Moxie",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.11",
+    "@mui/styled-engine-sc": "^5.11.11",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "firebase": "^9.17.1",
     "framer-motion": "^10.0.1",
     "gh-pages": "^5.0.0",
     "node-sass": "^8.0.0",
@@ -16,13 +21,14 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "sass": "^1.58.3",
+    "styled-components": "^5.3.6",
     "tailwind-scrollbar-hide": "^1.1.7",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
