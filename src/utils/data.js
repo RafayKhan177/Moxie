@@ -146,15 +146,15 @@ export const Category = [
     category: "running",
   }, {
     id: 2,
-    name: "dress",
+    name: "Dress",
     category: "dress",
   }, {
     id: 3,
-    name: "athletic",
+    name: "Athletic",
     category: "athletic",
   }, {
     id: 4,
-    name: "casual",
+    name: "Casual",
     category: "casual",
   },
 ]

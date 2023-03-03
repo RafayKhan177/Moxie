@@ -28,16 +28,6 @@ const SignUp = () => {
     }
   }, [firebase, navigate]);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   const email = data.get("email");
-  //   const password = data.get("password");
-  //   console.log(email, password);
-  //   await firebase.signupUserWithEmailAndPassword();
-  //   navigate("/Home");
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,7 +36,6 @@ const SignUp = () => {
     console.log(email, password);
     try {
       await firebase.signupUserWithEmailAndPassword(email, password);
-      navigate("/Home");
     } catch (error) {
       // Handle the error here
       console.log(error);

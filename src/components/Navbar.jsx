@@ -9,7 +9,7 @@ import { useFirebase } from "../context/firebase";
 
 const Navbar = () => {
   const firebase = useFirebase();
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const toggleCart = () => {
     setShowCart(!showCart);
@@ -20,12 +20,11 @@ const Navbar = () => {
     <>
       <nav>
         <div onClick={() => setShowCart(!showCart)}>
-          <motion.NavLink
-            whileTap={{ scale: 0.75 }}
-            className="nav_link flex items-center"
-          >
-            <HiOutlineShoppingCart />1
-          </motion.NavLink>
+          <motion.div whileTap={{ scale: 0.75 }}>
+            <NavLink className="nav_link flex items-center">
+              <HiOutlineShoppingCart />1
+            </NavLink>
+          </motion.div>
         </div>
         <NavLink className="nav_link" to="Moxie">
           Home
@@ -63,6 +62,14 @@ const Navbar = () => {
               }}
             >
               Sign In
+            </li>
+            <li
+              onClick={() => {
+                navigate("Home/Add-Items");
+                setShowMenu(false);
+              }}
+            >
+              Add items
             </li>
           </ul>
         </div>

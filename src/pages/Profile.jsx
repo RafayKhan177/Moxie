@@ -26,11 +26,11 @@ const Profile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      // email: data.get("email"),
-      fullName: data.get("name"),
-    });
-    // await firebase.updateProfile(data.get("name"), profilePic);
+    await firebase.updateProfileData(
+      data.get("name"),
+      data.get("address"),
+      profilePic
+    );
     navigate("/Moxie");
   };
   return (
@@ -62,16 +62,6 @@ const Profile = () => {
           >
             <TextField
               margin="normal"
-              // required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
               required
               fullWidth
               name="name"
@@ -80,6 +70,17 @@ const Profile = () => {
               id="name"
               autoComplete="current-name"
             />
+            <TextField
+              margin="normal"
+              // required
+              fullWidth
+              id="address"
+              label="Address"
+              name="address"
+              autoComplete="address"
+              autoFocus
+            />
+
             <input
               type="file"
               onChange={(e) => setProfilePic(e.target.files[0])}

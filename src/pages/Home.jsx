@@ -12,7 +12,7 @@ import Menu from "../components/Menu";
 
 const Home = () => {
   const [scrollValue, setScrollValue] = useState(0);
-  console.log(scrollValue);
+  // console.log(scrollValue);
   return (
     <section>
       <div className="hero_bg_div">
