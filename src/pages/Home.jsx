@@ -9,10 +9,14 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { GiConverseShoe } from "react-icons/gi";
 import { FaShoePrints } from "react-icons/fa";
 import Menu from "../components/Menu";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [scrollValue, setScrollValue] = useState(0);
   // console.log(scrollValue);
+  const items = useSelector((state) => state);
+  console.log([items.displayItems]);
+  // console.log(items)
   return (
     <section>
       <div className="hero_bg_div">
@@ -58,7 +62,7 @@ const Home = () => {
           </div>
         </div>
         <Row
-          data={shoesData?.filter((n) => n.category == "casual")}
+          data={items.displayItems?.filter((n) => n.category == "casual")}
           scrollValue={scrollValue}
           flag={true}
         />
@@ -81,7 +85,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Menu flag={true} />
+        <Menu flag={true} data={items.displayItems} />
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { GiConverseShoe } from "react-icons/gi";
 import { Category, shoesData } from "../utils/data";
 import Row from "./Row";
-const Menu = () => {
+const Menu = ({data}) => {
   const [filter, setFilter] = useState("running");
   return (
     <>
@@ -36,7 +36,7 @@ const Menu = () => {
        </div>
       </div>
       <div className="">
-        <Row data={shoesData?.filter((n) => n.category == filter)} />
+        <Row data={data?.filter((n) => n.category == filter)} />
       </div>
     </>
   );

@@ -6,8 +6,11 @@ import { useState } from "react";
 import Avatar from "../assets/Avatar.png";
 
 import { useFirebase } from "../context/firebase";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+    const items = useSelector((state) => state);
+  
   const firebase = useFirebase();
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -22,7 +25,7 @@ const Navbar = () => {
         <div onClick={() => setShowCart(!showCart)}>
           <motion.div whileTap={{ scale: 0.75 }}>
             <NavLink className="nav_link flex items-center">
-              <HiOutlineShoppingCart />1
+              <HiOutlineShoppingCart />{items.cart.length}
             </NavLink>
           </motion.div>
         </div>
@@ -74,7 +77,7 @@ const Navbar = () => {
           </ul>
         </div>
       ) : null}
-      <Cart showCart={showCart} toggleCart={toggleCart} />
+      <Cart showCart={showCart} toggleCart={toggleCart} data={items.cart}/>
     </>
   );
 };

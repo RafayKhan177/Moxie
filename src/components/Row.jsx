@@ -1,8 +1,13 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import {MdShoppingBasket} from 'react-icons/md'
+import { MdShoppingBasket } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/slices/cartSlice";
 
 const Row = ({ data, scrollValue, flag }) => {
+  const dispatch = useDispatch();
+  console.log(data.itemPhoto);
+
   const Row = useRef();
   useEffect(() => {
     Row.current.scrollLeft += scrollValue;
@@ -11,7 +16,9 @@ const Row = ({ data, scrollValue, flag }) => {
   return (
     <section
       ref={Row}
-      className={`row_container scrollbar-hide gap-8 ${flag ? "" : "flex-wrap "}`}
+      className={`row_container scrollbar-hide gap-8 ${
+        flag ? "" : "flex-wrap "
+      }`}
     >
       {data && data.length > 0 ? (
         data.map((item) => (
@@ -19,7 +26,7 @@ const Row = ({ data, scrollValue, flag }) => {
             initial={{ opacity: 0, y: 500 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 500 }}
-            key={item.id}
+            // key={item.itemPhoto}
             className="card_div  w-400 mx-auto h-[18rem] min-w-[300px] md:w-[340px] my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-lg flex flex-col justify-between items-center"
           >
             <div className="w-full flex items-center justify-between">
@@ -28,13 +35,25 @@ const Row = ({ data, scrollValue, flag }) => {
                 whileHover={{ scale: 1.3 }}
               >
                 <img
-                  src={item.image}
+                  src={item.itemPhoto}
                   alt="food pic"
                   className="h-[12rem] w-[12rem] object-contain"
                 />
               </motion.div>
               <motion.div
                 whileTap={{ scale: 0.75 }}
+                onClick={(e) =>
+                  dispatch(
+                    addItem({
+                      name: item.name,
+                      price: item.price,
+                      category: item.category,
+                      description: item.desc,
+                      image: item.itemPhoto,
+                      // quantity:
+                    })
+                  )
+                }
                 className="flex items-center justify-center w-8 h-8 rounded-full bg-color_orange cursor-pointer hover:shadow-md"
               >
                 <MdShoppingBasket className="text-white" />

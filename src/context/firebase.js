@@ -20,6 +20,8 @@ import {
   where,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../redux/slices/displayItemsSlice";
 
 const FirebaseContext = createContext(null);
 
@@ -42,14 +44,18 @@ const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
 export const FirebaseProvider = (props) => {
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items);
+
   const [user, setUser] = useState(null);
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) setUser(user);
       else setUser(null);
     });
+    fetchItems();
   }, []);
-  console.log(user);
+  // console.log(user);
   const signinWithGoogle = () => {
     signInWithPopup(firebaseAuth, googleProvider)
       .then((e) => {
@@ -155,12 +161,13 @@ export const FirebaseProvider = (props) => {
       querySnapshot.forEach((doc) => {
         items.push({ id: doc.id, ...doc.data() });
       });
+      dispatch(addItem(items));
       console.log("Items fetched:", items);
+      console.log("Items dispatched:", items);
     } catch (error) {
       console.log("An error occurred:", error);
     }
   };
-  fetchItems()
 
   const isLoggedIn = !!user;
   return (
