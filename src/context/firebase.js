@@ -21,7 +21,8 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../redux/slices/displayItemsSlice";
+import { addDisplayItem } from "../redux/slices/displayItemsSlice";
+import { updateUser, removeUserData } from "../redux/slices/userDataSlice";
 
 const FirebaseContext = createContext(null);
 
@@ -45,16 +46,54 @@ const storage = getStorage(firebaseApp);
 
 export const FirebaseProvider = (props) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.items);
+  // const items = useSelector((state) => state.items);
+  // console.log("osm", items);
 
   const [user, setUser] = useState(null);
+  
+  useEffect(() => {
+    if (user !== null) {
+      dispatch(updateUser(user));
+    }
+  }, [user]);
+
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
       if (user) setUser(user);
       else setUser(null);
     });
     fetchItems();
-  }, []);
+  }, [user]);
+
+  // useEffect(() => {
+  // }, [user.data()]);
+  // useEffect(() => {
+  //   onAuthStateChanged(firebaseAuth, (user) => {
+  //     if (user)  {
+  //       setUser(user)
+  //         .then(() => dispatch(updateUser(user)))
+  //         .catch((error) => console.error(error));
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  //   fetchItems();
+  // }, []);
+  //   useEffect(() => {
+  //   onAuthStateChanged(firebaseAuth, (user) => {
+  //     if (user)  {
+  //       setUser(user).then(() => {
+  //         dispatch(updateUser(user));
+  //         console.log(dispatch);
+  //       });
+
+  //     } else {
+  //       setUser(null);
+  //     }
+  //   });
+  //   fetchItems();
+  // }, []);
+
   // console.log(user);
   const signinWithGoogle = () => {
     signInWithPopup(firebaseAuth, googleProvider)
@@ -70,13 +109,13 @@ export const FirebaseProvider = (props) => {
   const signupUserWithEmailAndPassword = (email, password) =>
     createUserWithEmailAndPassword(firebaseAuth, email, password);
 
-  const signinUserWithEmailAndPassword = (email, password) => {
-    signInWithEmailAndPassword(firebaseAuth, email, password)
+  const signinUserWithEmailAndPassword = async (email, password) => {
+    await signInWithEmailAndPassword(firebaseAuth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
-        // ...
+        dispatch(updateUser(user));
+        console.log(dispatch);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -161,9 +200,10 @@ export const FirebaseProvider = (props) => {
       querySnapshot.forEach((doc) => {
         items.push({ id: doc.id, ...doc.data() });
       });
-      dispatch(addItem(items));
-      console.log("Items fetched:", items);
-      console.log("Items dispatched:", items);
+      dispatch(addDisplayItem(items));
+
+      // console.log("Items fetched:", items);
+      // console.log("Items dispatched:", items);
     } catch (error) {
       console.log("An error occurred:", error);
     }

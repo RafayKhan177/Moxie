@@ -15,7 +15,7 @@ const Home = () => {
   const [scrollValue, setScrollValue] = useState(0);
   // console.log(scrollValue);
   const items = useSelector((state) => state);
-  console.log([items.displayItems]);
+  const displayItems = items.displayItems[0];
   // console.log(items)
   return (
     <section>
@@ -85,7 +85,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Menu flag={true} data={items.displayItems} />
+        <Menu flag={true} data={displayItems} />
       </div>
     </section>
   );

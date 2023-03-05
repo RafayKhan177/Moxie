@@ -17,24 +17,21 @@ import { useFirebase } from "../context/firebase";
 const CreateItems = () => {
   const navigate = useNavigate();
   const firebase = useFirebase();
-  
+
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-
-  const [loading, setLoading] = useState("");
   const [imageAsset, setimageAsset] = useState();
 
   const [alertStatus, setAlertStatus] = useState("danger");
+  const [loading, setLoading] = useState("");
   const [fields, setFields] = useState(true);
   const [msg, setMsg] = useState(null);
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await firebase.addItemData(name,desc,price,image,category,imageAsset);
+    await firebase.addItemData(name, desc, price, category, imageAsset);
     // navigate("/Moxie");
   };
   return (
@@ -70,7 +67,11 @@ const CreateItems = () => {
             onChange={(e) => setCategory(e.target.value)}
             className="border-b-2 outline-none text-base w-full bg-gray-200 p-2 rounded-md cursor-pointer"
           >
-            <option value="other" className="bg-white">
+            <option
+              value="other"
+              onChange={(e) => setCategory(e.target.value)}
+              className="bg-white"
+            >
               Select Category
             </option>
             <option value="other">Other</option>
@@ -114,7 +115,6 @@ const CreateItems = () => {
                   <div className="relative h-full">
                     <img
                       src={imageAsset && URL.createObjectURL(imageAsset)}
-
                       alt="item image"
                       className="w-full h-full object-cover"
                     />

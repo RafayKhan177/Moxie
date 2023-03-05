@@ -4,12 +4,11 @@ const displayItemsSlice = createSlice({
   name: "items",
   initialState: [],
   reducers: {
-    addItem: (state, action) => {
-      state.push(action.payload);
+    addDisplayItem: (state, action) => {
+      state.push(action.payload); // push individual item object
     },
   },
 });
 
-
-export const { addItem } = displayItemsSlice.actions;
+export const { addDisplayItem } = displayItemsSlice.actions;
 export default displayItemsSlice.reducer;

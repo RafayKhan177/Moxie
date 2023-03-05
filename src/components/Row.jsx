@@ -6,7 +6,7 @@ import { addItem } from "../redux/slices/cartSlice";
 
 const Row = ({ data, scrollValue, flag }) => {
   const dispatch = useDispatch();
-  console.log(data.itemPhoto);
+  // console.log(data.itemPhoto);
 
   const Row = useRef();
   useEffect(() => {
@@ -26,7 +26,7 @@ const Row = ({ data, scrollValue, flag }) => {
             initial={{ opacity: 0, y: 500 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 500 }}
-            // key={item.itemPhoto}
+            key={item.id}
             className="card_div  w-400 mx-auto h-[18rem] min-w-[300px] md:w-[340px] my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-lg flex flex-col justify-between items-center"
           >
             <div className="w-full flex items-center justify-between">
