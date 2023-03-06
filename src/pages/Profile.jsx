@@ -8,16 +8,21 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-// import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useFirebase } from "../context/firebase";
 
+import { useSelector } from "react-redux";
+
 const theme = createTheme();
 
 const Profile = () => {
+  const items = useSelector((state) => state);
+  const userData = items.userData[0];
+
   const navigate = useNavigate();
   const firebase = useFirebase();
 
@@ -35,7 +40,7 @@ const Profile = () => {
   };
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="ProfilePage">
         <CssBaseline />
         <Box
           sx={{
@@ -49,10 +54,14 @@ const Profile = () => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            {/* <LockOutlinedIcon /> */}
+            {userData ? (
+              <img src={userData.photoURL} alt="avatar" />
+            ) : (
+              <LockOutlinedIcon />
+            )}
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {userData ? userData.displayName : null}
           </Typography>
           <Box
             component="form"
@@ -84,11 +93,9 @@ const Profile = () => {
             <input
               type="file"
               onChange={(e) => setProfilePic(e.target.files[0])}
+              className="file-upload"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth

@@ -9,15 +9,16 @@ import { useFirebase } from "../context/firebase";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-    const items = useSelector((state) => state);
-  
+  const items = useSelector((state) => state);
+  const userData = items.userData[0];
+  const navigate = useNavigate();
+
   const firebase = useFirebase();
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const toggleCart = () => {
     setShowCart(!showCart);
   };
-  const navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +26,8 @@ const Navbar = () => {
         <div onClick={() => setShowCart(!showCart)}>
           <motion.div whileTap={{ scale: 0.75 }}>
             <NavLink className="nav_link flex items-center">
-              <HiOutlineShoppingCart />{items.cart.length}
+              <HiOutlineShoppingCart />
+              {items.cart.length}
             </NavLink>
           </motion.div>
         </div>
@@ -33,7 +35,7 @@ const Navbar = () => {
           Home
         </NavLink>
         <NavLink className="nav_link" to="/Home/Profile">
-          Profile
+          Contact
         </NavLink>
         <NavLink className="nav_link" to="">
           Blog
@@ -43,13 +45,20 @@ const Navbar = () => {
           className="img_div"
           onClick={() => setShowMenu(!showMenu)}
         >
-          <img src={Avatar} alt="profile" />
+          <img src={userData ? userData.photoURL : Avatar} alt="profile" />
         </motion.div>
       </nav>
       {showMenu ? (
         <div className="profile_menu">
           <ul>
-            <li>Profile</li>
+            <li
+              onClick={() => {
+                navigate("Home/Profile");
+                setShowMenu(false);
+              }}
+            >
+              Profile
+            </li>
             <li
               onClick={() => {
                 navigate("Home/SignUp");
@@ -74,10 +83,18 @@ const Navbar = () => {
             >
               Add items
             </li>
+            <li
+              onClick={() => {
+                navigate("Home/Dashboard");
+                setShowMenu(false);
+              }}
+            >
+              Dashboard
+            </li>
           </ul>
         </div>
       ) : null}
-      <Cart showCart={showCart} toggleCart={toggleCart} data={items.cart}/>
+      <Cart showCart={showCart} toggleCart={toggleCart} data={items.cart} />
     </>
   );
 };

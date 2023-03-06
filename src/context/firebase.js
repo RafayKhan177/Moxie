@@ -18,6 +18,7 @@ import {
   getDoc,
   query,
   where,
+  deleteDoc,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,11 +52,11 @@ export const FirebaseProvider = (props) => {
 
   const [user, setUser] = useState(null);
   
-  useEffect(() => {
-    if (user !== null) {
-      dispatch(updateUser(user));
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     dispatch(updateUser(user));
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
@@ -65,36 +66,7 @@ export const FirebaseProvider = (props) => {
     fetchItems();
   }, [user]);
 
-  // useEffect(() => {
-  // }, [user.data()]);
-  // useEffect(() => {
-  //   onAuthStateChanged(firebaseAuth, (user) => {
-  //     if (user)  {
-  //       setUser(user)
-  //         .then(() => dispatch(updateUser(user)))
-  //         .catch((error) => console.error(error));
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  //   fetchItems();
-  // }, []);
-  //   useEffect(() => {
-  //   onAuthStateChanged(firebaseAuth, (user) => {
-  //     if (user)  {
-  //       setUser(user).then(() => {
-  //         dispatch(updateUser(user));
-  //         console.log(dispatch);
-  //       });
 
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   });
-  //   fetchItems();
-  // }, []);
-
-  // console.log(user);
   const signinWithGoogle = () => {
     signInWithPopup(firebaseAuth, googleProvider)
       .then((e) => {
@@ -209,6 +181,16 @@ export const FirebaseProvider = (props) => {
     }
   };
 
+  const deleteItemData = async (itemId) => {
+    try {
+      await deleteDoc(doc(firestore, "shoes", itemId));
+      console.log("Item deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting item: ", error);
+    }
+  };
+  
+
   const isLoggedIn = !!user;
   return (
     <FirebaseContext.Provider
@@ -219,6 +201,7 @@ export const FirebaseProvider = (props) => {
         updateProfileData,
         addItemData,
         fetchItems,
+        deleteItemData,
         isLoggedIn,
       }}
     >
