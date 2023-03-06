@@ -8,7 +8,7 @@ import {
   MdAttachMoney,
 } from "react-icons/md";
 
-import { Loader } from "../components/Index";
+import { Loader } from "./Index";
 import { Category } from "../utils/data";
 
 import { NavLink, useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const CreateItems = () => {
     // navigate("/Moxie");
   };
   return (
-    <div className="w-full h-auto my-20 border-8 flex items-center justify-center min-h-screen overflow-x-hidden bg-slate-200">
+    <div className="w-full h-auto border-8 flex items-center justify-center min-h-screen overflow-x-hidden ">
       <div className="w-[90] md:w-[75%] border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center gap-4">
         {fields && (
           <motion.p

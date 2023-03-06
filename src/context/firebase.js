@@ -52,11 +52,11 @@ export const FirebaseProvider = (props) => {
 
   const [user, setUser] = useState(null);
   
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     dispatch(updateUser(user));
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user !== null) {
+      dispatch(updateUser(user));
+    }
+  }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {

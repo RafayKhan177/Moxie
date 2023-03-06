@@ -479,15 +479,15 @@ nav {
   grid-template-columns: 25% 75%;
   padding: 3rem 0;
   .side_nav {
-    background-color: #fa8100e7;
+    background-color: #19ae89ce;
     border-radius: 0 1rem 1rem 0;
-    height: 100vh;
+    // height: 100vh;
     button {
       width: 100%;
       background-color: transparent;
       padding: 1rem 0;
       color: $color_offWhite;
-      transition: .5s;
+      transition: 0.5s;
     }
     button:hover {
       background-color: #00000054;
@@ -496,8 +496,29 @@ nav {
   .content {
     background-color: #fafafae7;
     border-radius: 1rem;
-    height: 100vh;
+    // height: 100vh;
     margin: 0 1rem;
+    tbody {
+      tr {
+        font-size: 0.8rem;
+        color: #4b4a4a;
+        img {
+          height: 3rem;
+          width: 5rem;
+          object-fit: cover;
+        }
+        .delete_icon {
+          width: 2rem;
+          height: 2rem;
+          margin: auto;
+          color: red;
+          cursor: pointer;
+          // display: flex;
+          // align-items: center;
+          // justify-content: center;
+        }
+      }
+    }
   }
 }
 /* -------------------------------------------------------------- End Dashboard Page  */
