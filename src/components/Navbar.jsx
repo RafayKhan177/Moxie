@@ -34,12 +34,12 @@ const Navbar = () => {
         <NavLink className="nav_link" to="Moxie">
           Home
         </NavLink>
-        <NavLink className="nav_link" to="/Home/Profile">
+        {/* <NavLink className="nav_link" to="/Home/Profile">
           Contact
         </NavLink>
         <NavLink className="nav_link" to="">
           Blog
-        </NavLink>
+        </NavLink> */}
         <motion.div
           whileTap={{ scale: 0.75 }}
           className="img_div"
@@ -74,14 +74,6 @@ const Navbar = () => {
               }}
             >
               Sign In
-            </li>
-            <li
-              onClick={() => {
-                navigate("Home/Add-Items");
-                setShowMenu(false);
-              }}
-            >
-              Add items
             </li>
             <li
               onClick={() => {

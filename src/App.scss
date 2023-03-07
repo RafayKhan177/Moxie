@@ -55,11 +55,15 @@ nav {
   z-index: 5;
   width: 95vw;
   .nav_link {
-    color: teal;
+    background-color: $color_teal;
+    border-radius: 2rem;
+    color: $color_offWhite;
+    padding: .3rem .8rem;
     margin: 0 0.2rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     cursor: pointer;
-    font-weight: bolder;
+    font-weight: 500;
+    text-decoration: none;
   }
   .nav_link:first-child {
     font-weight: 500;
@@ -90,6 +94,10 @@ nav {
   // padding: 1rem;
   background-color: $color_skin;
   border-radius: 1rem;
+  ul{
+    margin: 0;
+    padding: 0;
+  }
   ul li {
     font-size: 0.9rem;
     color: #494949;
@@ -477,31 +485,33 @@ nav {
 .dashboard_section {
   display: grid;
   grid-template-columns: 25% 75%;
-  padding: 3rem 0;
+  padding: 5rem 0;
   .side_nav {
-    background-color: #19ae89ce;
+    background-color: #fafafaee;
     border-radius: 0 1rem 1rem 0;
     // height: 100vh;
     button {
       width: 100%;
       background-color: transparent;
       padding: 1rem 0;
-      color: $color_offWhite;
+      color: #494949;
       transition: 0.5s;
+      border-radius: 1rem;
+      margin: 1px;
     }
     button:hover {
-      background-color: #00000054;
+      background-color: #b5ffffad;
     }
   }
   .content {
-    background-color: #fafafae7;
+    background-color: #fafafaee;
     border-radius: 1rem;
     // height: 100vh;
     margin: 0 1rem;
     tbody {
       tr {
         font-size: 0.8rem;
-        color: #4b4a4a;
+        color: #494949;
         img {
           height: 3rem;
           width: 5rem;

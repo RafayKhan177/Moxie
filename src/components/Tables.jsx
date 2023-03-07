@@ -2,8 +2,10 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { useFirebase } from "../context/firebase";
-
 import { MdOutlineDeleteSweep } from "react-icons/md";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+// import '.../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const Tables = () => {
   const items = useSelector((state) => state);
