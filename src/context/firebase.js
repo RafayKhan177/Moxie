@@ -51,7 +51,7 @@ export const FirebaseProvider = (props) => {
   // console.log("osm", items);
 
   const [user, setUser] = useState(null);
-  
+
   useEffect(() => {
     if (user !== null) {
       dispatch(updateUser(user));
@@ -65,7 +65,6 @@ export const FirebaseProvider = (props) => {
     });
     fetchItems();
   }, [user]);
-
 
   const signinWithGoogle = () => {
     signInWithPopup(firebaseAuth, googleProvider)
@@ -118,7 +117,7 @@ export const FirebaseProvider = (props) => {
         address: address,
       });
 
-      console.log("Profile updated!");
+      console.log("Profile updated!", updateProfile);
     } catch (error) {
       console.log("An error occurred:", error);
     }
@@ -189,7 +188,6 @@ export const FirebaseProvider = (props) => {
       console.error("Error deleting item: ", error);
     }
   };
-  
 
   const isLoggedIn = !!user;
   return (

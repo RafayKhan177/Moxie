@@ -29,7 +29,7 @@ const Row = ({ data, scrollValue, flag }) => {
             key={item.id}
             className="card_div  w-400 mx-auto h-[18rem] min-w-[300px] md:w-[340px] my-12 backdrop-blur-lg rounded-lg p-2 hover:drop-shadow-lg flex flex-col justify-between items-center"
           >
-            <div className="w-full flex items-center justify-between">
+            <div className="m-0 w-full flex items-center justify-between">
               <motion.div
                 className="w-[12rem] h-[12rem] -mt-16 drop-shadow-2xl"
                 whileHover={{ scale: 1.3 }}
@@ -60,14 +60,14 @@ const Row = ({ data, scrollValue, flag }) => {
               </motion.div>
             </div>
             <div className="w-full flex items-end justify-end flex-col gap-1">
-              <p className="to-textColor font-semibold md:text-lg text-base">
+              <p className="m-0 to-textColor font-semibold md:text-lg text-base">
                 {item.name}
               </p>
-              <p className="mt-1 text-sm text-gray-500">{item.category} </p>
-              <p className="mt-1 text-sm text-gray-500">{item.desc} </p>
+              <p className="m-0 mt-1 text-sm text-gray-500">{item.category} </p>
+              <p className="m-0 mt-1 text-sm text-gray-500">{item.desc} </p>
               <div className="flex items-center gap-8">
-                <p className="text-lg text-headingColor font-semibold">
-                  <span className="text-lg text-red-500">$ </span>
+                <p className="m-0 text-lg text-headingColor font-semibold">
+                  <span className="m-0 text-lg text-red-500">$ </span>
                   {item.price}
                 </p>
               </div>

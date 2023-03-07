@@ -7,7 +7,6 @@ import {
   Profile,
   Dashboard,
 } from "./pages/Index";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
