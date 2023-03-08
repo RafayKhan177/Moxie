@@ -52,11 +52,11 @@ export const FirebaseProvider = (props) => {
 
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    if (user !== null) {
-      dispatch(updateUser(user));
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) {
+  //     dispatch(updateUser(user));
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
@@ -150,9 +150,11 @@ export const FirebaseProvider = (props) => {
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        qty: 1,
       })
         .then((docRef) => {
-          console.log("Document written with ID: ", docRef.id);
+          // console.log("Document written with ID: ", docRef.id);
+          alert("Upload Succesfully, Refresh to se changes");
         })
         .catch((error) => {
           console.error("Error adding document: ", error);
@@ -183,9 +185,29 @@ export const FirebaseProvider = (props) => {
   const deleteItemData = async (itemId) => {
     try {
       await deleteDoc(doc(firestore, "shoes", itemId));
-      console.log("Item deleted successfully!");
+      // console.log("Item deleted successfully!");
+      alert("Item Deletes");
     } catch (error) {
       console.error("Error deleting item: ", error);
+    }
+  };
+  const placeOrder = async (items, subTotal, total) => {
+    try {
+      const docRef = await addDoc(collection(firestore, "AllOrders"), {
+        items,
+        subTotal: subTotal || 0,
+        total: total || 0,
+        userID: user.uid,
+        userEmail: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      });
+      console.log("Document written with ID: ", docRef.id);
+      alert("Your Order Placed Successfully");
+      console.log("Order Placed");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      alert("An error occurred while placing your order.");
     }
   };
 
@@ -200,6 +222,7 @@ export const FirebaseProvider = (props) => {
         addItemData,
         fetchItems,
         deleteItemData,
+        placeOrder,
         isLoggedIn,
       }}
     >
