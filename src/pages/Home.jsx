@@ -61,11 +61,7 @@ const Home = () => {
             </motion.div>
           </div>
         </div>
-        <Row
-          data={items.displayItems?.filter((n) => n.category == "casual")}
-          scrollValue={scrollValue}
-          flag={true}
-        />
+        <Row data={displayItems} scrollValue={scrollValue} flag={true} />
       </div>
 
       <div className="row_title">

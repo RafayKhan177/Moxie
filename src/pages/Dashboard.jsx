@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Tables } from "../components/Index";
+import { Tables, AllOrders } from "../components/Index";
 import CreateItems from "../components/CreateItems";
 
 const Dashboard = () => {
@@ -13,6 +13,8 @@ const Dashboard = () => {
     content = <Tables />;
   } else if (selectedButton === "addItems") {
     content = <CreateItems />;
+  } else if (selectedButton === "AllOrders") {
+    content = <AllOrders />;
   }
 
   return (
@@ -20,6 +22,9 @@ const Dashboard = () => {
       <div className="side_nav">
         <button onClick={() => handleButtonClick("allItems")}>All Data</button>
         <button onClick={() => handleButtonClick("addItems")}>Add Items</button>
+        <button onClick={() => handleButtonClick("AllOrders")}>
+          All Orders
+        </button>
       </div>
       <div className="content">{content}</div>
     </section>

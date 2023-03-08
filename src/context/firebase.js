@@ -24,6 +24,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
 import { addDisplayItem } from "../redux/slices/displayItemsSlice";
 import { updateUser, removeUserData } from "../redux/slices/userDataSlice";
+import { setAllOrders } from "../redux/slices/allOrdersSlice";
 
 const FirebaseContext = createContext(null);
 
@@ -52,11 +53,12 @@ export const FirebaseProvider = (props) => {
 
   const [user, setUser] = useState(null);
 
-  // useEffect(() => {
-  //   if (user !== null) {
-  //     dispatch(updateUser(user));
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user !== null) {
+      // dispatch(updateUser(user));
+      GetAllOrders();
+    }
+  }, [user]);
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
@@ -177,6 +179,22 @@ export const FirebaseProvider = (props) => {
 
       // console.log("Items fetched:", items);
       // console.log("Items dispatched:", items);
+    } catch (error) {
+      console.log("An error occurred:", error);
+    }
+  };
+
+  const GetAllOrders = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(firestore, "AllOrders"));
+      const ordersData = [];
+      querySnapshot.forEach((doc) => {
+        ordersData.push(doc.data());
+      });
+      dispatch(setAllOrders(ordersData));
+
+      console.log("Items fetched:", ordersData);
+      console.log("Items dispatched:", ordersData);
     } catch (error) {
       console.log("An error occurred:", error);
     }
