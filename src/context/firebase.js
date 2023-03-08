@@ -55,7 +55,7 @@ export const FirebaseProvider = (props) => {
 
   useEffect(() => {
     if (user !== null) {
-      // dispatch(updateUser(user));
+      dispatch(updateUser(user));
       GetAllOrders();
     }
   }, [user]);
