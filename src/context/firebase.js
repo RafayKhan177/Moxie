@@ -68,6 +68,18 @@ export const FirebaseProvider = (props) => {
     fetchItems();
   }, [user]);
 
+  const signOut = async () => {
+    try {
+      await firebaseAuth.signOut();
+      dispatch(removeUserData());
+      setUser(null);
+      console.log("User signed out successfully");
+      alert("Signed out");
+    } catch (error) {
+      console.error("Error signing out user:", error);
+    }
+  };
+
   const signinWithGoogle = () => {
     signInWithPopup(firebaseAuth, googleProvider)
       .then((e) => {
@@ -233,6 +245,7 @@ export const FirebaseProvider = (props) => {
   return (
     <FirebaseContext.Provider
       value={{
+        signOut,
         signinWithGoogle,
         signupUserWithEmailAndPassword,
         signinUserWithEmailAndPassword,
@@ -242,6 +255,7 @@ export const FirebaseProvider = (props) => {
         deleteItemData,
         placeOrder,
         isLoggedIn,
+        user,
       }}
     >
       {props.children}

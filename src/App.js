@@ -6,6 +6,8 @@ import {
   SignIn,
   Profile,
   Dashboard,
+  NotFound,
+  Account
 } from "./pages/Index";
 import "./App.scss";
 
@@ -17,9 +19,10 @@ function App() {
         <Route exect path="/Moxie" element={<Home />} />
         <Route exect path="Home/SignUp" element={<SignUp />} />
         <Route exect path="Home/SignIn" element={<SignIn />} />
-        <Route exect path="Home/Profile" element={<Profile />} />
+        <Route exect path="Home/EditProfile" element={<Profile />} />
         <Route exect path="Home/Dashboard" element={<Dashboard />} />
-        <Route path="*" element={<h1>404</h1>} />
+        <Route exect path="Home/Account" element={<Account />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

@@ -61,28 +61,40 @@ const Navbar = () => {
             </li>
             <li
               onClick={() => {
-                navigate("Home/SignUp");
+                navigate("Home/Account");
                 setShowMenu(false);
               }}
             >
-              Sign Up
+              Account
             </li>
             <li
               onClick={() => {
-                navigate("Home/SignIn");
+                navigate("Contact");
                 setShowMenu(false);
               }}
             >
-              Sign In
+              Contact
             </li>
-            <li
-              onClick={() => {
-                navigate("Home/Dashboard");
-                setShowMenu(false);
-              }}
-            >
-              Dashboard
-            </li>
+            {firebase.user && firebase.user.email === "admin@gmail.com" && (
+              <li
+                onClick={() => {
+                  navigate("Home/Dashboard");
+                  setShowMenu(false);
+                }}
+              >
+                Dashboard
+              </li>
+            )}
+            {/* {!firebase.user && (
+              <li
+                onClick={() => {
+                  navigate("Home/NotAuthorized");
+                  setShowMenu(false);
+                }}
+              >
+                Not Authorized
+              </li>
+            )} */}
           </ul>
         </div>
       ) : null}

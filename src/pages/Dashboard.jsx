@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Tables, AllOrders } from "../components/Index";
 import CreateItems from "../components/CreateItems";
 
+import { useFirebase } from "../context/firebase";
+
 const Dashboard = () => {
+  const firebase = useFirebase();
   const [selectedButton, setSelectedButton] = useState("allItems");
+
   const handleButtonClick = (button) => {
     setSelectedButton(button);
   };
@@ -17,6 +21,10 @@ const Dashboard = () => {
     content = <AllOrders />;
   }
 
+  if (firebase.user.email !== "admin@gmail.com") {
+    return <NotAuthorized />;
+  }
+
   return (
     <section className="dashboard_section">
       <div className="side_nav">
@@ -28,6 +36,14 @@ const Dashboard = () => {
       </div>
       <div className="content">{content}</div>
     </section>
+  );
+};
+
+const NotAuthorized = () => {
+  return (
+    <div>
+      <h1>You are not authorized to view this page.</h1>
+    </div>
   );
 };
 
