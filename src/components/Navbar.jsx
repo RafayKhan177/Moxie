@@ -31,15 +31,6 @@ const Navbar = () => {
             </NavLink>
           </motion.div>
         </div>
-        <NavLink className="nav_link" to="Moxie">
-          Home
-        </NavLink>
-        {/* <NavLink className="nav_link" to="/Home/Profile">
-          Contact
-        </NavLink>
-        <NavLink className="nav_link" to="">
-          Blog
-        </NavLink> */}
         <motion.div
           whileTap={{ scale: 0.75 }}
           className="img_div"
@@ -53,15 +44,7 @@ const Navbar = () => {
           <ul>
             <li
               onClick={() => {
-                navigate("Home/Profile");
-                setShowMenu(false);
-              }}
-            >
-              Profile
-            </li>
-            <li
-              onClick={() => {
-                navigate("Home/Account");
+                navigate("/Home/Account");
                 setShowMenu(false);
               }}
             >
@@ -69,11 +52,19 @@ const Navbar = () => {
             </li>
             <li
               onClick={() => {
-                navigate("Contact");
+                navigate("/Moxie");
                 setShowMenu(false);
               }}
             >
-              Contact
+              Home
+            </li>
+            <li
+              onClick={() => {
+                navigate("/Home/MyOrders");
+                setShowMenu(false);
+              }}
+            >
+              My Orders
             </li>
             {firebase.user && firebase.user.email === "admin@gmail.com" && (
               <li
@@ -85,6 +76,14 @@ const Navbar = () => {
                 Dashboard
               </li>
             )}
+            <li
+              onClick={() => {
+                navigate("/Home/TrackOrders");
+                setShowMenu(false);
+              }}
+            >
+              Track Orders
+            </li>
             {/* {!firebase.user && (
               <li
                 onClick={() => {

@@ -16,6 +16,10 @@ const Tables = () => {
 
   const allOrders = useSelector((state) => state.allOrders.orders);
 
+  const orderStateHandle = (state) => {
+    firebase.orderState(selectedItem.orderId, state);
+  };
+
   return selectedItem ? (
     <div>
       <Card sx={{ display: "flex", margin: "1rem", padding: "1rem" }}>
@@ -36,6 +40,7 @@ const Tables = () => {
             <span>
               Total Payment: <h5>{selectedItem.total}</h5>
             </span>
+            <span>Status: {selectedItem.status || "status not found"}</span>
           </Box>
         </Box>
         <CardMedia
@@ -76,6 +81,15 @@ const Tables = () => {
           ))}
         </tbody>
       </Table>
+      <p>Order Status: {selectedItem.items.status}</p>
+      <button onClick={() => orderStateHandle("Approve")}>Approve</button>
+      <button onClick={() => orderStateHandle("Cancel")}>Cancel</button>
+      <button onClick={() => orderStateHandle("Order out of Delivery")}>
+        Order out of Delivery
+      </button>
+      <button onClick={() => orderStateHandle("Order Preparing")}>
+        Order Preparing
+      </button>
       <button className="btn btn-button" onClick={() => setSelectedItem(null)}>
         Back to Orders
       </button>

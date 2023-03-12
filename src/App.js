@@ -7,7 +7,9 @@ import {
   Profile,
   Dashboard,
   NotFound,
-  Account
+  Account,
+  MyOrders,
+  TrackOrders,
 } from "./pages/Index";
 import "./App.scss";
 
@@ -22,6 +24,8 @@ function App() {
         <Route exect path="Home/EditProfile" element={<Profile />} />
         <Route exect path="Home/Dashboard" element={<Dashboard />} />
         <Route exect path="Home/Account" element={<Account />} />
+        <Route exect path="Home/MyOrders" element={<MyOrders />} />
+        <Route exect path="Home/TrackOrders" element={<TrackOrders />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

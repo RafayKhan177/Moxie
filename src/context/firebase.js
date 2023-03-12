@@ -19,12 +19,14 @@ import {
   query,
   where,
   deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
 import { addDisplayItem } from "../redux/slices/displayItemsSlice";
 import { updateUser, removeUserData } from "../redux/slices/userDataSlice";
 import { setAllOrders } from "../redux/slices/allOrdersSlice";
+import { addMyorderData } from "../redux/slices/myOrdersSlice";
 
 const FirebaseContext = createContext(null);
 
@@ -40,23 +42,51 @@ const firebaseConfig = {
 
 export const useFirebase = () => useContext(FirebaseContext);
 
+function getCurrentDate() {
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const monthIndex = currentDate.getMonth();
+  const monthName = monthNames[monthIndex];
+  const day = String(currentDate.getDate()).padStart(2, "0");
+  const formattedDate = `${day} ${monthName} ${year}`;
+  return formattedDate;
+}
+const currentDate = getCurrentDate();
+// console.log(currentDate); // output: "12 March 2023"
+
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
-
+const db = getFirestore(firebaseApp);
 export const FirebaseProvider = (props) => {
   const dispatch = useDispatch();
   // const items = useSelector((state) => state.items);
   // console.log("osm", items);
 
   const [user, setUser] = useState(null);
-
+  // const [myOrders, setMyOrders] = useState([]);
+  //
   useEffect(() => {
     if (user !== null) {
       dispatch(updateUser(user));
-      GetAllOrders();
+      // dispatch(addMyorderData(myOrders));
+      getMyOrdersDetails();
     }
   }, [user]);
 
@@ -66,6 +96,7 @@ export const FirebaseProvider = (props) => {
       else setUser(null);
     });
     fetchItems();
+    GetAllOrders();
   }, [user]);
 
   const signOut = async () => {
@@ -159,12 +190,13 @@ export const FirebaseProvider = (props) => {
         desc,
         price,
         category,
+        qty: 1,
+        status: "waiting for approved",
         itemPhoto: uploadResult,
         userID: user.uid,
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
-        qty: 1,
       })
         .then((docRef) => {
           // console.log("Document written with ID: ", docRef.id);
@@ -221,6 +253,7 @@ export const FirebaseProvider = (props) => {
       console.error("Error deleting item: ", error);
     }
   };
+
   const placeOrder = async (items, subTotal, total) => {
     try {
       const docRef = await addDoc(collection(firestore, "AllOrders"), {
@@ -231,7 +264,10 @@ export const FirebaseProvider = (props) => {
         userEmail: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        Date: currentDate || 0,
+        status: "pending",
       });
+      await updateDoc(docRef, { orderId: docRef.id });
       console.log("Document written with ID: ", docRef.id);
       alert("Your Order Placed Successfully");
       console.log("Order Placed");
@@ -239,6 +275,34 @@ export const FirebaseProvider = (props) => {
       console.error("Error adding document: ", error);
       alert("An error occurred while placing your order.");
     }
+  };
+
+  const orderState = async (id, state) => {
+    let docRef;
+    docRef = doc(firestore, "AllOrders", id);
+    await updateDoc(docRef, {
+      status: state,
+    });
+    alert("Status Changed");
+  };
+
+  const getMyOrdersDetails = async () => {
+    const q = query(
+      collection(db, "AllOrders"),
+      where("userEmail", "==", user.email)
+    );
+
+    const querySnapshot = await getDocs(q);
+    const myOrders = [];
+
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      myOrders.push(doc.data());
+    });
+
+    // setMyOrders(myOrders);
+    await dispatch(addMyorderData(myOrders));
   };
 
   const isLoggedIn = !!user;
@@ -254,6 +318,8 @@ export const FirebaseProvider = (props) => {
         fetchItems,
         deleteItemData,
         placeOrder,
+        orderState,
+        getMyOrdersDetails,
         isLoggedIn,
         user,
       }}
