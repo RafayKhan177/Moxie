@@ -9,6 +9,7 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { useFirebase } from "../context/firebase";
 import { margin, width } from "@mui/system";
+import { Button } from "@mui/material";
 
 const Tables = () => {
   const firebase = useFirebase();
@@ -82,17 +83,61 @@ const Tables = () => {
         </tbody>
       </Table>
       <p>Order Status: {selectedItem.items.status}</p>
-      <button onClick={() => orderStateHandle("Approve")}>Approve</button>
-      <button onClick={() => orderStateHandle("Cancel")}>Cancel</button>
-      <button onClick={() => orderStateHandle("Order out of Delivery")}>
-        Order out of Delivery
-      </button>
-      <button onClick={() => orderStateHandle("Order Preparing")}>
-        Order Preparing
-      </button>
-      <button className="btn btn-button" onClick={() => setSelectedItem(null)}>
-        Back to Orders
-      </button>
+
+      <div style={{ gap: "5px" }}>
+        {" "}
+        <Button 
+        className="mx-1"
+          variant="contained"
+          // color="inherit"
+          onClick={() => orderStateHandle("Order out of Delivery")}
+        >
+          Delivery
+        </Button>
+        <Button 
+        className="mx-1"
+          variant="contained"
+          // color="inherit"
+          onClick={() => orderStateHandle("Panding")}
+        >
+          Panding
+        </Button>
+        <Button 
+        className="mx-1"
+          variant="contained"
+          // color="inherit"
+          onClick={() => orderStateHandle("Your Order is Preparing")}
+        >
+          Preparing
+        </Button>
+      </div>
+      <br />
+      <div style={{ gap: "5px" }}>
+        <Button 
+        className="mx-1"
+          variant="contained"
+          color="success"
+          onClick={() => orderStateHandle("Approve")}
+        >
+          Approve
+        </Button>
+        <Button 
+        className="mx-1"
+          variant="contained"
+          color="error"
+          onClick={() => orderStateHandle("Cancel")}
+        >
+          Cancel
+        </Button>
+        <Button 
+        className="mx-1"
+          variant="outlined"
+          // color="secondary"
+          onClick={() => setSelectedItem(null)}
+        >
+          Back to Orders
+        </Button>
+      </div>
     </div>
   ) : (
     <Table striped bordered hover>
