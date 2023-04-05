@@ -40,7 +40,7 @@ const Account = () => {
               <div className="d-flex justify-content-center mb-2">
                 <Link to="/Home/SignUp">
                   <button type="button" className="btn btn-primary">
-                    Sign In
+                    Sign Up
                   </button>
                 </Link>
                 <Link to="/Home/SignIn">
@@ -48,7 +48,7 @@ const Account = () => {
                     type="button"
                     className="btn btn-outline-primary ms-1"
                   >
-                    Sign Up
+                    Sign In
                   </button>
                 </Link>
               </div>
@@ -163,7 +163,7 @@ const Account = () => {
                 </div>
               </div>
 
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-md-6">
                   <div className="card mb-4 mb-md-0">
                     <div className="card-body">
@@ -348,7 +348,7 @@ const Account = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -40,16 +40,13 @@ const Navbar = () => {
         </motion.div>
       </nav>
       {showMenu ? (
-        <div className="profile_menu">
+        <motion.div
+          initial={{ opacity: 0, x: 200 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 200 }}
+          className="profile_menu"
+        >
           <ul>
-            <li
-              onClick={() => {
-                navigate("/Home/Account");
-                setShowMenu(false);
-              }}
-            >
-              Account
-            </li>
             <li
               onClick={() => {
                 navigate("/Moxie");
@@ -60,11 +57,19 @@ const Navbar = () => {
             </li>
             <li
               onClick={() => {
-                navigate("/Home/MyOrders");
+                navigate("/Home/TrackOrders");
                 setShowMenu(false);
               }}
             >
-              My Orders
+              Track Orders
+            </li>
+            <li
+              onClick={() => {
+                navigate("/Home/Account");
+                setShowMenu(false);
+              }}
+            >
+              Account
             </li>
             {firebase.user && firebase.user.email === "admin@gmail.com" && (
               <li
@@ -76,14 +81,6 @@ const Navbar = () => {
                 Dashboard
               </li>
             )}
-            <li
-              onClick={() => {
-                navigate("/Home/TrackOrders");
-                setShowMenu(false);
-              }}
-            >
-              Track Orders
-            </li>
             {/* {!firebase.user && (
               <li
                 onClick={() => {
@@ -95,7 +92,7 @@ const Navbar = () => {
               </li>
             )} */}
           </ul>
-        </div>
+        </motion.div>
       ) : null}
       <Cart showCart={showCart} toggleCart={toggleCart} data={items.cart} />
     </>

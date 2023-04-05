@@ -17,43 +17,9 @@ const TrackOrders = () => {
   const firebase = useFirebase();
 
   return (
-    <div>
-      {/* <Card sx={{ display: "flex", margin: "1rem", padding: "1rem" }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              {myOrders.displayName || "user has no name"}'s Details
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Email: {myOrders.userEmail || "user has no email"}
-            </Typography>
-          </CardContent>
-          <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-            <span>
-              Total Payment: <h5>{myOrders.total}</h5>
-            </span>
-            <span>Status: {myOrders.status || "status not found"}</span>
-          </Box>
-        </Box>
-        <CardMedia
-          component="img"
-          sx={{
-            width: "16rem",
-            height: "16rem",
-            objectFit: "cover",
-            marginLeft: "auto",
-            borderRadius: "50%",
-          }}
-          image={myOrders.photoURL}
-          alt="profile"
-        />
-      </Card> */}
-      {/* <h3 style={{ padding: "1rem" }}>Delivery Items</h3> */}
-      <Table striped bordered hover>
+    <div className="track-order">
+        <h3>ORDER'S DETAILS</h3>
+      <Table striped bordered hover className="table">
         <thead>
           <tr>
             <th>Picture</th>

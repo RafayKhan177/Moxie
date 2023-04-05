@@ -66,9 +66,9 @@ const Cart = ({ showCart, toggleCart, data }) => {
                     <p>$ {item.price}</p>
                   </div>
                   <div className="qty">
-                    <p>-</p>
+                    {/* <p>-</p> */}
                     <p className="qtyind">1</p>
-                    <p>+</p>
+                    {/* <p>+</p> */}
                   </div>
                 </div>
               ))}

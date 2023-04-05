@@ -9,7 +9,7 @@ import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { useFirebase } from "../context/firebase";
 import { margin, width } from "@mui/system";
-import { Button } from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 
 const Tables = () => {
   const firebase = useFirebase();
@@ -22,7 +22,7 @@ const Tables = () => {
   };
 
   return selectedItem ? (
-    <div>
+    <div style={{ padding: "1rem 0" }}>
       <Card sx={{ display: "flex", margin: "1rem", padding: "1rem" }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ flex: "1 0 auto" }}>
@@ -82,61 +82,50 @@ const Tables = () => {
           ))}
         </tbody>
       </Table>
-      <p>Order Status: {selectedItem.items.status}</p>
+      <div className="buttons" style={{ margin: "0 1rem" }}>
+        <p>Order Status: {selectedItem.items.status}</p>
 
-      <div style={{ gap: "5px" }}>
-        {" "}
-        <Button 
-        className="mx-1"
-          variant="contained"
-          // color="inherit"
-          onClick={() => orderStateHandle("Order out of Delivery")}
-        >
-          Delivery
-        </Button>
-        <Button 
-        className="mx-1"
-          variant="contained"
-          // color="inherit"
-          onClick={() => orderStateHandle("Panding")}
-        >
-          Panding
-        </Button>
-        <Button 
-        className="mx-1"
-          variant="contained"
-          // color="inherit"
-          onClick={() => orderStateHandle("Your Order is Preparing")}
-        >
-          Preparing
-        </Button>
-      </div>
-      <br />
-      <div style={{ gap: "5px" }}>
-        <Button 
-        className="mx-1"
-          variant="contained"
-          color="success"
-          onClick={() => orderStateHandle("Approve")}
-        >
-          Approve
-        </Button>
-        <Button 
-        className="mx-1"
-          variant="contained"
-          color="error"
-          onClick={() => orderStateHandle("Cancel")}
-        >
-          Cancel
-        </Button>
-        <Button 
-        className="mx-1"
-          variant="outlined"
-          // color="secondary"
-          onClick={() => setSelectedItem(null)}
-        >
-          Back to Orders
-        </Button>
+        <div style={{ gap: "5px" }}>
+          <ButtonGroup
+            variant="contained"
+            aria-label="outlined primary button group"
+          >
+            <Button onClick={() => orderStateHandle("Order out of Delivery")}>
+              Delivery
+            </Button>
+            <Button onClick={() => orderStateHandle("Panding")}>Panding</Button>
+            <Button onClick={() => orderStateHandle("Your Order is Preparing")}>
+              Preparing
+            </Button>
+          </ButtonGroup>
+        </div>
+        <br />
+        <div style={{ gap: "5px" }}>
+          <Button
+            className="mx-1"
+            variant="contained"
+            color="success"
+            onClick={() => orderStateHandle("Approve")}
+          >
+            Approve
+          </Button>
+          <Button
+            className="mx-1"
+            variant="contained"
+            color="error"
+            onClick={() => orderStateHandle("Cancel")}
+          >
+            Cancel
+          </Button>
+          <Button
+            className="mx-1"
+            variant="outlined"
+            // color="secondary"
+            onClick={() => setSelectedItem(null)}
+          >
+            Back to Orders
+          </Button>
+        </div>
       </div>
     </div>
   ) : (

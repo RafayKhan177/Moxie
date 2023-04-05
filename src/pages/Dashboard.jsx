@@ -4,7 +4,17 @@ import CreateItems from "../components/CreateItems";
 
 import { useFirebase } from "../context/firebase";
 
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+
 const Dashboard = () => {
+  const [value, setValue] = React.useState("one");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const firebase = useFirebase();
   const [selectedButton, setSelectedButton] = useState("allItems");
 
@@ -26,16 +36,35 @@ const Dashboard = () => {
   }
 
   return (
-    <section className="dashboard_section">
-      <div className="side_nav">
-        <button onClick={() => handleButtonClick("allItems")}>All Data</button>
-        <button onClick={() => handleButtonClick("addItems")}>Add Items</button>
-        <button onClick={() => handleButtonClick("AllOrders")}>
-          All Orders
-        </button>
-      </div>
-      <div className="content">{content}</div>
-    </section>
+    <>
+      <section className="dashboard_section">
+        <Box sx={{ width: "100%", margin: "2rem 1rem" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="wrapped label tabs example"
+          >
+            <Tab
+              onClick={() => handleButtonClick("allItems")}
+              value="one"
+              label="ALL ITEMS"
+              wrapped
+            />
+            <Tab
+              onClick={() => handleButtonClick("addItems")}
+              value="two"
+              label="ADD ITEMS"
+            />
+            <Tab
+              onClick={() => handleButtonClick("AllOrders")}
+              value="three"
+              label="ORDERS"
+            />
+          </Tabs>
+        </Box>
+        <div className="content">{content}</div>
+      </section>
+    </>
   );
 };
 
