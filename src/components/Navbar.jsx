@@ -71,7 +71,7 @@ const Navbar = () => {
             >
               Account
             </li>
-            {firebase.user && firebase.user.email === "admin@gmail.com" && (
+            {/* {firebase.user && firebase.user.email === "admin@gmail.com" && ( */}
               <li
                 onClick={() => {
                   navigate("Home/Dashboard");
@@ -80,7 +80,7 @@ const Navbar = () => {
               >
                 Dashboard
               </li>
-            )}
+            {/* )} */}
             {/* {!firebase.user && (
               <li
                 onClick={() => {

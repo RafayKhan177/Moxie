@@ -1,6 +1,7 @@
 import { useFirebase } from "../context/firebase";
 import Avatar from "../assets/Avatar.png";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Account = () => {
   const firebase = useFirebase();
@@ -39,17 +40,16 @@ const Account = () => {
               <p className="text-muted mb-4">"Email Not Found"</p>
               <div className="d-flex justify-content-center mb-2">
                 <Link to="/Home/SignUp">
-                  <button type="button" className="btn btn-primary">
+                  <Button  >
                     Sign Up
-                  </button>
+                  </Button>
                 </Link>
                 <Link to="/Home/SignIn">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary ms-1"
+                  <Button
+                    var='conatined'
                   >
                     Sign In
-                  </button>
+                  </Button>
                 </Link>
               </div>
             </div>

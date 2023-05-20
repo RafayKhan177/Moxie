@@ -1,19 +1,16 @@
-import React from "react";
-import Table from "react-bootstrap/Table";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useFirebase } from "../context/firebase";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import { MdOutlineDeleteSweep } from "react-icons/md";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-// import '.../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const Tables = () => {
   const items = useSelector((state) => state);
   const displayItems = items.displayItems[0];
 
   const firebase = useFirebase();
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleDeleteClick = async () => {
     setIsLoading(true);
@@ -31,37 +28,37 @@ const Tables = () => {
   };
 
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {displayItems &&
-          displayItems.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Image</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Price</TableCell>
+            <TableCell>Category</TableCell>
+            <TableCell>Description</TableCell>
+            <TableCell>Delete</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {displayItems &&
+            displayItems.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>
                   <img src={item.itemPhoto} alt="" />
-                </td>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.category}</td>
-                <td>{item.desc}</td>
-                <td onClick={() => handleDeleteConfirm(item)}>
-                  <MdOutlineDeleteSweep className="delete_icon"/>
-                </td>
-              </tr>
-            );
-          })}
-      </tbody>
-    </Table>
+                </TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.price}</TableCell>
+                <TableCell>{item.category}</TableCell>
+                <TableCell>{item.desc}</TableCell>
+                <TableCell onClick={() => handleDeleteConfirm(item)}>
+                  <MdOutlineDeleteSweep className="delete_icon" />
+                </TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

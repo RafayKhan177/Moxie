@@ -31,9 +31,9 @@ const Dashboard = () => {
     content = <AllOrders />;
   }
 
-  if (firebase.user.email !== "admin@gmail.com") {
-    return <NotAuthorized />;
-  }
+  // if (firebase.user.email !== "admin@gmail.com") {
+  //   return <NotAuthorized />;
+  // }
 
   return (
     <>

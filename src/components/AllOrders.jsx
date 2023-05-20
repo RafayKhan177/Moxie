@@ -3,12 +3,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
 import React, { useState } from "react";
-import Table from "react-bootstrap/Table";
 import { useSelector } from "react-redux";
 import { useFirebase } from "../context/firebase";
-import { margin, width } from "@mui/system";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { Button, ButtonGroup } from "@mui/material";
 
 const Tables = () => {
@@ -22,24 +20,20 @@ const Tables = () => {
   };
 
   return selectedItem ? (
-    <div style={{ padding: "1rem 0" }}>
+    <Box sx={{ padding: "1rem 0" }}>
       <Card sx={{ display: "flex", margin: "1rem", padding: "1rem" }}>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
+            <Typography variant="h5" component="div">
               {selectedItem.displayName || "user has no name"}'s Details
             </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
+            <Typography variant="subtitle1" color="text.secondary" component="div">
               Email: {selectedItem.userEmail || "user has no email"}
             </Typography>
           </CardContent>
           <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
             <span>
-              Total Payment: <h5>{selectedItem.total}</h5>
+              Total Payment: <Typography variant="h5" component="h5">{selectedItem.total}</Typography>
             </span>
             <span>Status: {selectedItem.status || "status not found"}</span>
           </Box>
@@ -57,105 +51,88 @@ const Tables = () => {
           alt="profile"
         />
       </Card>
-      <h3 style={{ padding: "1rem" }}>Delivery Items</h3>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Picture</th>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {selectedItem.items.map((item) => (
-            <tr key={item.id}>
-              <td>
-                <img src={item.image} alt="product" />
-              </td>
-              <td>{item.name}</td>
-              <td>{item.category}</td>
-              <td>{item.description}</td>
-              <td>{item.price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <Typography variant="h3" component="h3" sx={{ padding: "1rem" }}>
+        Delivery Items
+      </Typography>
+      <TableContainer>
+        <Table sx={{ minWidth: 650 }} striped bordered hover>
+          <TableHead>
+            <TableRow>
+              <TableCell>Picture</TableCell>
+              <TableCell>Product</TableCell>
+              <TableCell>Category</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Price</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {selectedItem.items.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>
+                  <img src={item.image} alt="product" />
+                </TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.category}</TableCell>
+                <TableCell>{item.description}</TableCell>
+                <TableCell>{item.price}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <div className="buttons" style={{ margin: "0 1rem" }}>
         <p>Order Status: {selectedItem.items.status}</p>
-
         <div style={{ gap: "5px" }}>
-          <ButtonGroup
-            variant="contained"
-            aria-label="outlined primary button group"
-          >
-            <Button onClick={() => orderStateHandle("Order out of Delivery")}>
-              Delivery
-            </Button>
+          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+            <Button onClick={() => orderStateHandle("Order out of Delivery")}>Delivery</Button>
             <Button onClick={() => orderStateHandle("Panding")}>Panding</Button>
-            <Button onClick={() => orderStateHandle("Your Order is Preparing")}>
-              Preparing
-            </Button>
+            <Button onClick={() => orderStateHandle("Your Order is Preparing")}>Preparing</Button>
           </ButtonGroup>
         </div>
         <br />
         <div style={{ gap: "5px" }}>
-          <Button
-            className="mx-1"
-            variant="contained"
-            color="success"
-            onClick={() => orderStateHandle("Approve")}
-          >
+          <Button className="mx-1" variant="contained" color="success" onClick={() => orderStateHandle("Approve")}>
             Approve
           </Button>
-          <Button
-            className="mx-1"
-            variant="contained"
-            color="error"
-            onClick={() => orderStateHandle("Cancel")}
-          >
+          <Button className="mx-1" variant="contained" color="error" onClick={() => orderStateHandle("Cancel")}>
             Cancel
           </Button>
-          <Button
-            className="mx-1"
-            variant="outlined"
-            // color="secondary"
-            onClick={() => setSelectedItem(null)}
-          >
+          <Button className="mx-1" variant="outlined" onClick={() => setSelectedItem(null)}>
             Back to Orders
           </Button>
         </div>
       </div>
-    </div>
+    </Box>
   ) : (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Profile</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {allOrders &&
-          allOrders.map((item) => (
-            <tr
-              key={item.id}
-              style={{ cursor: "pointer" }}
-              onClick={() => setSelectedItem(item)}
-            >
-              <td>
-                <img src={item.photoURL} alt="user profile" />
-              </td>
-              <td>{item.displayName}</td>
-              <td>{item.userEmail || "user has no email"}</td>
-              <td>{item.total}</td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>
+    <TableContainer>
+      <Table sx={{ minWidth: 650 }} striped bordered hover>
+        <TableHead>
+          <TableRow>
+            <TableCell>Profile</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Price</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {allOrders &&
+            allOrders.map((item) => (
+              <TableRow
+                key={item.id}
+                style={{ cursor: "pointer" }}
+                onClick={() => setSelectedItem(item)}
+              >
+                <TableCell>
+                  <img src={item.photoURL} alt="user profile" />
+                </TableCell>
+                <TableCell>{item.displayName}</TableCell>
+                <TableCell>{item.userEmail || "user has no email"}</TableCell>
+                <TableCell>{item.total}</TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
