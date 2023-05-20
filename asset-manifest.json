@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/Moxie/static/css/main.1576f9c8.css",
-    "main.js": "/Moxie/static/js/main.52ff191e.js",
+    "main.css": "/Moxie/static/css/main.3d943d55.css",
+    "main.js": "/Moxie/static/js/main.3fa1c058.js",
     "static/js/787.765a129d.chunk.js": "/Moxie/static/js/787.765a129d.chunk.js",
     "static/media/shoe_pic.png": "/Moxie/static/media/shoe_pic.c17238d9082c8677384b.png",
-    "static/media/bg-pettern2.png": "/Moxie/static/media/bg-pettern2.0b39a24d994f9097b07a.png",
     "static/media/logo.png": "/Moxie/static/media/logo.339609011643a60fbe01.png",
     "index.html": "/Moxie/index.html",
-    "main.1576f9c8.css.map": "/Moxie/static/css/main.1576f9c8.css.map",
-    "main.52ff191e.js.map": "/Moxie/static/js/main.52ff191e.js.map",
+    "main.3d943d55.css.map": "/Moxie/static/css/main.3d943d55.css.map",
+    "main.3fa1c058.js.map": "/Moxie/static/js/main.3fa1c058.js.map",
     "787.765a129d.chunk.js.map": "/Moxie/static/js/787.765a129d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1576f9c8.css",
-    "static/js/main.52ff191e.js"
+    "static/css/main.3d943d55.css",
+    "static/js/main.3fa1c058.js"
   ]
 }
